@@ -1,4 +1,7 @@
-# This is testing repository for PHP Academy.
+# Репозиторий с примерами, которые рассматривали на лекциях
 
-1. There is one file `index.html`.
-You can find my email there.
+* `repository.php` - файл, содержащий массив с данными о пользователях
+* `menu.php` - файл с массивом для меню сайта
+* `functions.php` - примеры, рассмотренные на лекции о функциях (7/10/2016)
+* `closures.php` - примеры с анонимными функциями (7/10/2016)
+* `loops.php` - файл с лекции о циклах (5/10/2016)
