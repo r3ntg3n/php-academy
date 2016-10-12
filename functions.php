@@ -23,7 +23,7 @@ $a = $staticVar;
  */
 function makeDrink(array $drinks, $flavour = 'apple')
 {
-    var_dump($GLOBALS);
+    //var_dump($GLOBALS);
     /*
     var_dump(func_num_args());
     var_dump(func_get_args());
@@ -43,7 +43,7 @@ $drinks = ['soda', 'juice'];
 $result = makeDrink(...[$drinks, 'orange']);
 // call_user_func
 // call_user_func_array
-echo $result . '<br>';
+//echo $result . '<br>';
 
 $error = null;
 function safeCopy($source, $target, $overwrite = false)
@@ -68,6 +68,8 @@ function safeCopy($source, $target, $overwrite = false)
 //$result = safeCopy('123.php', '23.php', true);
 function printMenu(array $menu, $upperLevel = '')
 {
+    static $levels = 0;
+    $levels++;
     echo '<ul>';
     foreach ($menu as &$item) {
         $url = "{$upperLevel}{$item['url']}";
@@ -77,11 +79,12 @@ function printMenu(array $menu, $upperLevel = '')
         }
     }
     unset($value);
+    echo '(Printed level: ' . $levels . ')';
     echo '</ul>';
 }
 
 $menu =require 'menu.php';
-//printMenu($menu);
+printMenu($menu);
 
 
 
