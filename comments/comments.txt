@@ -1,0 +1,9 @@
+a:4:{s:8:"username";s:8:"John Doe";s:5:"email";s:16:"j.doe@server.com";s:4:"date";s:16:"2016-10-19 19:33";s:4:"body";s:26:"This is our first comment.";}
+a:4:{s:8:"username";s:5:"Admin";s:5:"email";s:15:"admin@tests.loc";s:4:"date";s:16:"2016-10-19 19:52";s:4:"body";s:32:"Hi John Doe.<br /><br />Welcome.";}
+a:4:{s:8:"username";s:3:"Bug";s:5:"email";s:13:"bug@tests.com";s:4:"date";s:16:"2016-10-19 19:58";s:4:"body";s:41:"This <br />is<br />multiline<br />comment";}
+a:4:{s:8:"username";s:4:"HTML";s:5:"email";s:12:"html@w3c.org";s:4:"date";s:16:"2016-10-19 20:11";s:4:"body";s:38:"<br />this is my new comment with HTML";}
+a:4:{s:8:"username";s:4:"html";s:5:"email";s:12:"html@w3c.org";s:4:"date";s:16:"2016-10-19 20:17";s:4:"body";s:42:"&lt;hr&gt;<br />Should be horizontal line.";}
+a:4:{s:8:"username";s:7:"shityMe";s:5:"email";s:13:"shit@mail.com";s:4:"date";s:16:"2016-10-19 20:27";s:4:"body";s:30:"shit shit shit shit<br />Joke!";}
+a:4:{s:8:"username";s:1:"1";s:5:"email";s:1:"1";s:4:"date";s:16:"2016-10-19 20:28";s:4:"body";s:5:"shіt";}
+a:4:{s:8:"username";s:6:"Smiley";s:5:"email";s:12:"s@server.com";s:4:"date";s:16:"2016-10-19 20:42";s:4:"body";s:2:":D";}
+a:4:{s:8:"username";s:7:"Special";s:5:"email";s:14:"Special@me.org";s:4:"date";s:16:"2016-10-19 20:43";s:4:"body";s:28:"!@#$%^&amp;*()_+;:&lt;&gt;//";}
