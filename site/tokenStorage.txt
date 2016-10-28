@@ -1,0 +1,1 @@
+a:2:{s:8:"username";s:5:"j.doe";s:5:"token";s:40:"93afa6754444fa21a06f949ce37bf9e2d27b2344";}

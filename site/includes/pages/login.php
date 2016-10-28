@@ -5,7 +5,6 @@ if (isUserAuthorized()) {
     exit;
 }
 
-session_start();
 $sessionId = session_id();
 
 if (!empty($_POST)) {
