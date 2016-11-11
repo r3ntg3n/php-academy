@@ -8,6 +8,9 @@ $dbPassword = 'acad3my';
 $dbName = 'academy';
 
 $db = new MySQLi($dbHost, $dbUser, $dbPassword, $dbName);
+
+$db = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
+$result = mysqli_query($db, )
 if ($db->connect_errno) {
     echo 'Cannot connection to database: '
         . $db->connect_errno . ' '

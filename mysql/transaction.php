@@ -17,10 +17,6 @@ try {
 
 
 $db->beginTransaction();
-$query = 'SELECT MAX(id) + 1 as `next_id` FROM user';
-$st = $db->query($query);
-$row = $st->fetch(PDO::FETCH_ASSOC);
-$userId = intval($row['next_id']);
 
 $username = 'Ivan';
 $password = '1v@n';
@@ -31,13 +27,12 @@ $role = 'Newbye';
 $fraction = 'Atas';
 
 $query = 'INSERT INTO user (
-    id, username, password_hash, email, first_name, last_name
+    username, password_hash, email, first_name, last_name
 ) VALUES (
-    :id, :login, :hash, :email, :firstName, :lastName
+    :login, :hash, :email, :firstName, :lastName
 )';
 $st = $db->prepare($query);
 $paramMap = [
-    ':id' => $userId,
     ':login' => $username,
     ':hash' => $password,
     ':email' => $email,
@@ -54,6 +49,8 @@ if (!$result) {
     $db->rollback();
     exit('ERROR');
 }
+
+$userId = $db->lastInsertId();
 
 $query = 'INSERT INTO profile (user_id, role, fraction)
 VALUES (:userId, :role, :fraction)';
