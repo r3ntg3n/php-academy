@@ -1,3 +1,6 @@
+<?php
+global $user;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,18 +25,23 @@
                 <li>
                     <a href="/index.php">Home</a>
                 </li>
-                <?php if (!empty($user->username)) : ?>
+            <?php if (!empty($user->id)) : ?>
                 <li>
-                    <a href="profile.php">Your profile</a>
+                    <a href="/profile.php">Your profile</a>
                 </li>
+                <?php if (!empty($user->superuser)): ?>
+                <li>
+                    <a href="/management.php">Manage users</a>
+                </li>
+                <?php endif; ?>
                 <li>
                     <a href="/logout.php">Logout</a>
                 </li>
-                <?php else: ?>
+            <?php else: ?>
                 <li>
                     <a href="/signup.php">Sign up</a>
                 </li>
-                <?php endif; ?>
+            <?php endif; ?>
             </ul>
         </div>
     </nav>

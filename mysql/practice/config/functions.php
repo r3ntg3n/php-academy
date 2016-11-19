@@ -10,37 +10,35 @@
  */
 function render($page, array $params = [])
 {
-    $__filename =  ROOT_PATH . "/views/pages/{$page}.php";
-    if (!file_exists($__filename)) {
+    $filename = ROOT_PATH . "/views/pages/{$page}.php";
+    if (!file_exists($filename)) {
         trigger_error(
             "Cannot find view file <b>{$page}</b>",
             E_USER_ERROR
         );
     }
 
-    foreach ($params as $name => $value) {
-        $tmpName = "_{$name}";
-        if (!empty($$name)) {
-            $$tmpName = $$name;
-        }
-
-        $$name = $value;
-    }
-
-    ob_start();
-    require $__filename;
-    $__content = ob_get_contents();
-    ob_clean();
-
-    foreach ($params as $name => $value) {
-        $tmpName = "_{$name}";
-        if (!empty($$tmpName)) {
-            $$name = $$tmpName;
-        }
-    }
-
-    $content = $__content;
+    $content = renderViewFile($filename, $params);
     require ROOT_PATH . '/views/index.php';
+}
+
+/**
+ * Renders view file and returns render result.
+ *
+ * @param string $file   View filename.
+ * @param array  $params Rendering parameters.
+ *
+ * @return mixed
+ */
+function renderViewFile($file, array $params = [])
+{
+    ob_start();
+    ob_implicit_flush(false);
+    extract($params, EXTR_OVERWRITE);
+    require $file;
+    $content = ob_get_contents();
+    ob_clean();
+    return $content;
 }
 
 /**
@@ -56,14 +54,15 @@ function isUserAuthorized()
 
     global $db;
     $token = $_COOKIE['auth'];
-    $query = 'SELECT id, login FROM user WHERE auth_token = :auth';
+    $query = 'SELECT id, login as username, superuser FROM user WHERE auth_token = :auth';
     $st = $db->prepare($query);
     $st->bindParam(':auth', $token, PDO::PARAM_STR);
     $result = $st->execute();
     if ($row = $st->fetch(PDO::FETCH_ASSOC)) {
         global $user;
-        $user->username = $row['login'];
-        $user->id = intval($row['id']);
+        foreach ($row as $property => $value) {
+            $user->{$property} = $value;
+        }
         return true;
     }
 
@@ -103,4 +102,22 @@ function setUserAuthToken($userId, $token)
     $st->bindParam(':token', $token, PDO::PARAM_STR);
     $st->bindParam(':userId', $userId, PDO::PARAM_INT);
     $st->execute();
+}
+
+/**
+ * Checks, if username is already exists.
+ *
+ * @param string $username Username to check.
+ *
+ * @return boolean
+ */
+function isUserExists($username)
+{
+    global $db;
+    $query = 'SELECT 1 FROM user WHERE login = :login';
+    $st = $db->prepare($query);
+    $st->bindParam(':login', $username, PDO::PARAM_STR);
+    $st->execute();
+
+    return !empty($st->rowCount());
 }
